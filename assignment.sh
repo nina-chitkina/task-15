@@ -19,6 +19,47 @@ case $key in
 \tToday is $(date +"%A, %m %d %Y %H:%M") "
     echo
     ;;
+    
+    --mkdir|--make-directory)
+    MKDIR="$2"
+    shift #past argument
+    shift 
+    mkdir ${MKDIR}
+    echo
+    ;;
+    
+    -u|--to-uppercase)
+    U="$2"
+    shift #past argument
+    shift
+    echo $(echo $U | tr a-z A-Z ) 
+    echo
+    ;;
+    
+    -l|--to-lowercase)
+    L="$2"
+    shift #past argument
+    shift
+    echo $(echo $L | tr A-Z a-z ) 
+    echo
+    ;;
+    
+    -uf|--to-uppercase-first)
+    UF=$2
+    shift #past argument
+    shift
+    UF=`echo ${UF:0:1} | tr  '[a-z]' '[A-Z]'`${UF:1}
+    echo $UF
+    ;;
+    
+    -lf|--to-lowercase-first)
+    LF=$2
+    shift #past argument
+    shift
+    LF=`echo ${LF:0:1} | tr  '[A-Z]' '[a-z]'`${LF:1}
+    echo $LF
+    ;;
+    
     -h|--help)
     shift #past argument
     echo -e "
@@ -28,6 +69,10 @@ case $key in
 \t-h | --help\tHELP; 
 \t-n | --name\tNAME; 
 \t-d| --date\tDate;
+\t--mkdir | --make-directory\tMAKE DIRECTORY;
+\t-u | --to-uppercase\tLOWER TO UPPER;
+\t-uf | --to-uppercase-first\tFIRST CHARACTER UPPER CASE;
+\t-lf | --to-lowercase-first\tFIRST CHARACTER LOWER CASE;
   " 
 echo
     ;;
