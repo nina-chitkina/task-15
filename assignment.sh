@@ -60,6 +60,14 @@ case $key in
     echo $LF
     ;;
     
+    --git-keep)
+    GITKEEP=$2
+    shift #past argument
+    
+    GITKEEP=`touch .gitkeep`
+    echo 
+    ;;
+    
     -h|--help)
     shift #past argument
     echo -e "
