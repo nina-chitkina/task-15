@@ -60,12 +60,32 @@ case $key in
     echo $LF
     ;;
     
+    -random-text)
+    RANDOMTX=$2
+    shift #past argument
+    shift
+    if ! command -v fortune &> /dev/null
+	then
+    	sudo apt-get update -y
+    	sudo apt-get install -y fortune
+    	echo `fortune`
+    else 
+        echo `fortune`
+    fi
+    ;;
+    
+    -random-number)
+    shift #past argument
+    echo $RANDOM
+    ;;
+    
     --git-keep)
     GITKEEP=$2
     shift #past argument
-    
-    GITKEEP=`touch .gitkeep`
-    echo 
+    shift
+    echo $GITKEEP/.gitkeep
+    touch $GITKEEP/.gitkeep
+    echo done
     ;;
     
     -h|--help)
@@ -81,6 +101,9 @@ case $key in
 \t-u | --to-uppercase\tLOWER TO UPPER;
 \t-uf | --to-uppercase-first\tFIRST CHARACTER UPPER CASE;
 \t-lf | --to-lowercase-first\tFIRST CHARACTER LOWER CASE;
+\t--git-keep\tMAKING HIDEN DIRECTORY OF GIT KEEP;
+\t-random-text\tGENERATING RANDOM TEXT;
+\t-random-number\tGENERATING RANDOM NUMBER;
   " 
 echo
     ;;
