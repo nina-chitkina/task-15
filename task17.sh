@@ -9,7 +9,7 @@ while [[ $i -le 5 ]];
 do 
     MyPATH="RES"
     RANDTEXT=$(./assignment.sh -random-text | tr ' ' '-' );
-    ./second.sh --mkdir $MyPATH/$RANDTEXT
+    ./assignment.sh --mkdir $MyPATH/$RANDTEXT
     i=$((i+1)); 
 done
 
@@ -18,7 +18,7 @@ while [[ $i -le 5 ]];
 do 
     MyPATH="RES"
     RandNum=$( ./assignment.sh -random-number );
-    ./second.sh --mkdir $MyPATH/$RandNum; 
+    ./assignment.sh --mkdir $MyPATH/$RandNum; 
     i=$((i+1)); 
 done
 
@@ -28,7 +28,7 @@ do
     MyPATH="RES"
     RanTx=$(./assignment.sh -random-text | tr ' ' '-' );
     RanNum=$( ./assignment.sh -random-number );
-    ./second.sh --mkdir $MyPATH/$RanTx-$RanNum; 
+    ./assignment.sh --mkdir $MyPATH/$RanTx-$RanNum; 
     i=$((i+1)); 
 done
 
@@ -39,7 +39,7 @@ do
     RanTx=$(./assignment.sh -random-text | tr ' ' '-' );
     RanNum=$( ./assignment.sh -random-number );
     DirName=$MyPATH/$RanTx-$RanNum-Keep
-    ./second.sh --mkdir $DirName; 
+    ./assignment.sh --mkdir $DirName; 
     touch $DirName/.gitkeep;
     i=$((i+1)); 
 done
