@@ -1,5 +1,8 @@
 #!/bin/bash
 
+while INPUT= read -r line; do
+    ALL=$line
+done;
 
 POSITIONAL=()
 while [[ $# -gt 0 ]]
@@ -8,8 +11,7 @@ key="$1"
 
 case $key in
     -n|--name)
-    NAME="$2"
-    shift # past argument
+    NAME="$ALL"
     shift # past argument
     echo "Hello, ${NAME}"
     ;;
@@ -22,49 +24,43 @@ case $key in
     ;;
     
     --mkdir|--make-directory)
-    MKDIR="$2"
+    MKDIR="$ALL"
     shift #past argument
-    shift 
     mkdir ${MKDIR}
     echo
     ;;
     
     -u|--to-uppercase)
-    U="$2"
+    U="$ALL"
     shift #past argument
-    shift
     echo $(echo $U | tr a-z A-Z ) 
     echo
     ;;
     
     -l|--to-lowercase)
-    L="$2"
+    L="$ALL"
     shift #past argument
-    shift
     echo $(echo $L | tr A-Z a-z ) 
     echo
     ;;
     
     -uf|--to-uppercase-first)
-    UF=$2
+    UF=$ALL
     shift #past argument
-    shift
     UF=`echo ${UF:0:1} | tr  '[a-z]' '[A-Z]'`${UF:1}
     echo $UF
     ;;
     
     -lf|--to-lowercase-first)
-    LF=$2
+    LF=$ALL
     shift #past argument
-    shift
     LF=`echo ${LF:0:1} | tr  '[A-Z]' '[a-z]'`${LF:1}
     echo $LF
     ;;
     
     -random-text)
-    RANDOMTX=$2
+    RANDOMTX=$ALL
     shift #past argument
-    shift
     if ! command -v fortune &> /dev/null
 	then
     	sudo apt-get update -y
@@ -81,9 +77,8 @@ case $key in
     ;;
     
     --git-keep)
-    GITKEEP=$2
+    GITKEEP=$ALL
     shift #past argument
-    shift
     echo $GITKEEP/.gitkeep
     touch $GITKEEP/.gitkeep
     echo done
